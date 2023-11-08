@@ -13,9 +13,22 @@ $("body").on("change", "#inputFile", function(e, fileObject) {
       content = convert(content);
       console.log(content)
       cy.json({elements: content});
-      cy.nodes().forEach((node) => {
+      let childNodes = cy.nodes().filter(function( node ){
+        return Object.hasOwn(node.data(), 'bbox');
+      });
+      childNodes.forEach((node) => {
         node.position({x: node.data('bbox').x, y: node.data('bbox').y})
       });
+      cy.nodes().forEach((node) => {
+        if(node.data('parentId')) {
+          let parentID = node.data('parentId');
+          parent = cy.nodes().filter(function( ele ){
+            return ele.data('groupId') == parentID;
+          });
+          node.move({parent: parent.id()})
+        }
+      });
+      cy.fit(cy.elements(), 30);
     };
     r.addEventListener('loadend', function(){
     });

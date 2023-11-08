@@ -13,7 +13,7 @@
   "dependencies": {
     "cytoscape": "^3.5.7",
     "express": "^4.17.0",
-    "sbgnml-to-cytoscape": "github:hasanbalci/sbgnml-to-cytoscape#master"
+    "sbgnml-to-cytoscape": "github:hasanbalci/gpml-to-cytoscape#main"
   },
   "devDependencies": {
     "webpack": "^5.36.1",
