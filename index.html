@@ -1,0 +1,52 @@
+<!DOCTYPE>
+
+<html>
+
+<head>
+	<title>GPMLViz demo</title>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+	<script src="https://unpkg.com/cytoscape@3.10.1/dist/cytoscape.min.js"></script>
+
+	<!-- for testing with local version of cytoscape.js -->
+	<!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+
+	<style>
+		body {
+			font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+			font-size: 14px;
+		}
+
+		#cy {
+			z-index: 999;
+			width: 85%;
+			height: 85%;
+			float: left;
+		}
+
+		h1 {
+			opacity: 0.5;
+			font-size: 1em;
+			font-weight: bold;
+		}
+	</style>
+
+</head>
+
+<body>
+<h1>GPMLViz demo</h1>
+<input id="inputFile" type='file' style="display: none" />
+<div>
+	<select id="samples">
+	<option value=""></option> 
+	<option value="WP554">WP554</option>       
+	</select>
+  </div>  
+
+<div id="cy"></div>
+<script src="bundle.js"></script>
+</body>
+
+</html>
