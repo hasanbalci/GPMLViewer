@@ -1,5 +1,5 @@
 import {cy} from './cy-utilities';
-import convert from 'sbgnml-to-cytoscape';
+import convert from 'gpml-to-cytoscape';
 
 $("body").on("change", "#inputFile", function(e, fileObject) {
   var inputFile = this.files[0] || fileObject;

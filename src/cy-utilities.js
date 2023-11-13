@@ -27,7 +27,20 @@ let cy = window.cy = cytoscape({
         'border-width': 1,
         'background-color': '#ffffff',
         'border-color': '#000000',
-        'font-size': (node) => {return node.data('style').fontSize || 10},
+        'font-size': (node) => {return node.data('style').fontSize ? node.data('style').fontSize : 10},
+        'font-weight': (node) => { 
+          if(node.data('style').fontWeight) {
+            if(node.data('style').fontWeight == 'Normal') 
+              return 'normal';
+            else if (node.data('style').fontWeight == 'Bold')
+              return 'bold';
+            else
+              return 'normal';
+          }
+          else {
+            return 'normal';
+          }
+        }
       }
     },
     {
@@ -37,7 +50,20 @@ let cy = window.cy = cytoscape({
         'border-width': 1,
         'background-color': '#ffffff',
         'border-color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
-        'font-size': (node) => {return node.data('style').fontSize || 10},
+        'font-size': (node) => {return node.data('style').fontSize ? node.data('style').fontSize : 10},
+        'font-weight': (node) => { 
+          if(node.data('style').fontWeight) {
+            if(node.data('style').fontWeight == 'Normal') 
+              return 'normal';
+            else if (node.data('style').fontWeight == 'Bold')
+              return 'bold';
+            else
+              return 'normal';
+          }
+          else {
+            return 'normal';
+          }
+        },
         'color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'}
       }
     },
@@ -63,7 +89,7 @@ let cy = window.cy = cytoscape({
         'border-width': (node) => {return node.data('style').shapeType ? 1 : 0},
         'background-color': '#ffffff',
         'border-color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
-        'font-size': (node) => {return node.data('style').fontSize || 10},
+        'font-size': (node) => {return node.data('style').fontSize ? node.data('style').fontSize : 10},
         'font-weight': (node) => {return 'bold'},
         'color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
         'text-wrap': 'wrap'
@@ -91,7 +117,7 @@ let cy = window.cy = cytoscape({
         'border-width': (node) => {return node.data('style').shapeType ? 1 : 0},
         'background-color': '#ffffff',
         'border-color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
-        'font-size': (node) => {return node.data('style').fontSize || 10},
+        'font-size': (node) => {return node.data('style').fontSize ? node.data('style').fontSize : 10},
         'font-weight': (node) => {return 'bold'},
         'color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
         'text-wrap': 'wrap'
@@ -170,6 +196,15 @@ let cy = window.cy = cytoscape({
         'color': '#000000'
       }
     },
+    {
+      selector: 'node[class = "DummyNode"]',
+      style: {
+        'shape': 'rectangle',
+        'border-width': 0,
+        'background-color': '#000000',
+        'color': '#000000'
+      }
+    },    
     {
       selector: 'edge',
       style: {
