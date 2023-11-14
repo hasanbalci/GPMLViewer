@@ -46,7 +46,22 @@ let cy = window.cy = cytoscape({
     {
       selector: 'node[class = "Metabolite"]',
       style: {
-        'shape': 'rectangle',
+        'shape': (node) => 
+        { 
+          if(node.data('style').shapeType) {
+            if(node.data('style').shapeType == 'Rectangle') 
+              return 'rectangle';
+            else if (node.data('style').shapeType == 'RoundedRectangle')
+              return 'round-rectangle'
+            else if (node.data('style').shapeType == 'Oval')
+              return 'ellipse' 
+            else 
+              return 'rectangle' 
+          }
+          else {
+            return 'rectangle';
+          }
+        },
         'border-width': 1,
         'background-color': '#ffffff',
         'border-color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
@@ -120,7 +135,8 @@ let cy = window.cy = cytoscape({
         'font-size': (node) => {return node.data('style').fontSize ? node.data('style').fontSize : 10},
         'font-weight': (node) => {return 'bold'},
         'color': (node) => {return node.data('style').color ? ('#' + node.data('style').color) : '#000000'},
-        'text-wrap': 'wrap'
+        'text-wrap': 'wrap',
+        'z-index': (edge) => {return edge.data('style').zOrder ? edge.data('style').zOrder : 0},
       }
     },
     {
